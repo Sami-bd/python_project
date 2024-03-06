@@ -1,0 +1,139 @@
+import os
+
+
+total_balls = 1*6
+total_wickets = 2
+
+# variables
+ball_count = 0
+wicket_count = 0
+total_runs = 0
+
+wrong = False
+
+# ================= loop for team 1 ==================
+while True:
+    os.system("cls")
+
+    if ball_count == total_balls or wicket_count == total_wickets:
+        break
+    print("----------------")
+    print(f"Team 1: {total_runs} - {wicket_count}  / {ball_count//6}.{ball_count%6}")
+    print("----------------")
+
+    
+    if wrong:
+        print("Wrong input.....")
+
+    print("Choose your option (1 - 2)")
+    print("1, Runs")
+    print("2. Out")
+    input_choice = int(input("Choice :" ))
+    
+    if input_choice == 1:
+        print("Enter runs 0, 1, 2, 3, 4, 5, 6")
+        input_run = int(input("Run : "))
+        
+        if input_run >= 0 and 6 >= input_run:
+            total_runs += input_run
+            ball_count += 1
+        else:
+            wrong = True
+            continue
+            
+        
+    
+    elif input_choice == 2:
+        wicket_count += 1
+        ball_count += 1
+        
+    else:
+        wrong = True
+        continue
+    
+print(f"total runs : {total_runs}")
+print(f"terget : {total_runs+1}")
+
+
+team_1_run = total_runs      
+target = total_runs + 1
+
+# Reseting the variables
+ball_count = 0
+wicket_count = 0
+total_runs = 0
+    
+
+
+# ================= Loop for team 2 =====================
+while True:
+    os.system("cls")
+
+    if ball_count == total_balls or wicket_count == total_wickets or target <= total_runs:
+        break
+
+    print("----------------")
+    print(f"Team 2: {total_runs} - {wicket_count}  / {ball_count//6}.{ball_count%6} target : {target}")
+    print("----------------")
+
+    
+    if wrong:
+        print("Wrong input.....")
+
+    print("Choose your option (1 - 2)")
+    print("1, Runs")
+    print("2. Out")
+    input_choice = int(input("Choice :" ))
+    
+    if input_choice == 1:
+        print("Enter runs 0, 1, 2, 3, 4, 5, 6")
+        input_run = int(input("Run : "))
+        
+        if input_run >= 0 and 6 >= input_run:
+            total_runs += input_run
+            ball_count += 1
+        else:
+            wrong = True
+            continue
+            
+        
+    
+    elif input_choice == 2:
+        wicket_count += 1
+        ball_count += 1
+        
+    else:
+        wrong = True
+        continue
+
+
+team_2_run = total_runs
+
+
+# Finding result of the match
+if team_2_run >= target:
+    print("Winner : Team 2")
+
+elif team_2_run == team_1_run:
+    print("Draw")
+
+else:
+    print("Winner : Team 1")
+
+
+
+    
+    
+        
+    
+    
+    
+    
+    
+    
+    
+    
+
+
+
+
