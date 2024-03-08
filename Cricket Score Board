@@ -1,15 +1,26 @@
 import os
 
-
-total_balls = 1*6
-total_wickets = 2
-
 # variables
 ball_count = 0
 wicket_count = 0
 total_runs = 0
-
 wrong = False
+
+
+# asking team name
+team_1 = input("Enter team 1 name : ")
+team_2 = input("Enter team 2 name : ")
+
+
+# asking wickets and overs user want to play. v1.2 
+print("Enter wickets and overs")
+user_input_over = int(input("Overs : "))
+total_wickets = int(input("Wickets : "))
+
+# ===========================
+
+total_balls = user_input_over*6
+
 
 # ================= loop for team 1 ==================
 while True:
@@ -18,7 +29,12 @@ while True:
     if ball_count == total_balls or wicket_count == total_wickets:
         break
     print("============================")
-    print(f"Team 1: {total_runs} - {wicket_count}  / {ball_count//6}.{ball_count%6}")
+    print(f"{team_1}: {total_runs} - {wicket_count}  / {ball_count//6}.{ball_count%6}")
+    
+    # adding current run rate
+    if total_runs > 0:
+        print(f"CRR: {round(total_runs/(ball_count/6), 2)}")
+    # =======================
     print("============================")
 
     
@@ -29,47 +45,50 @@ while True:
     print("Choose your option (1 - 2)")
     print("1, Runs")
     print("2. Out")
-    input_choice = int(input("Choice :" ))
-    
-    if input_choice == 1:
-        print("Enter runs 0, 1, 2, 3, 4, 5, 6")
-        input_run = int(input("Run : "))
+    try:
+        input_choice = int(input("Choice : " ))
+        if input_choice == 1:
+            print("Enter runs 0, 1, 2, 3, 4, 5, 6")
+            input_run = int(input("Run : "))
 
-        if input_run >= 0 and 6 >= input_run:
-            total_runs += input_run
+            if input_run >= 0 and 6 >= input_run:
+                total_runs += input_run
+                ball_count += 1
+            else:
+                wrong = True
+                continue
+
+
+            # adding extra runs. v1.1
+            try:
+                print("Any extra (y/n)")
+                check_extra = input("Enter y/n : ").lower()
+                if check_extra == 'y':
+                    input_extre = input("Enter w (wide ball) or n(no ball) : ").lower()
+                    if input_extre:
+                        total_runs += 1
+                        ball_count -= 1
+                        continue
+                
+                elif check_extra == 'n':
+                    continue
+
+                else:
+                    wrong = True
+
+            except ValueError:
+                wrong = True
+                continue
+            # =================
+            
+        elif input_choice == 2:
+            wicket_count += 1
             ball_count += 1
+            
         else:
             wrong = True
             continue
-
-
-        # adding extra runs. v1.1
-        try:
-            print("Any extra (y/n)")
-            check_extra = input("Enter y/n : ").lower()
-            if check_extra == 'y':
-                input_extre = input("Enter w (wide ball) or n(no ball) : ").lower()
-                if input_extre:
-                    total_runs += 1
-                    ball_count -= 1
-                    continue
-            
-            elif check_extra == 'n':
-                continue
-
-            else:
-                wrong = True
-
-        except ValueError:
-            wrong = True
-            continue
-        # =================
-         
-    elif input_choice == 2:
-        wicket_count += 1
-        ball_count += 1
-        
-    else:
+    except ValueError:
         wrong = True
         continue
     
@@ -98,8 +117,16 @@ while True:
         break
 
     print("====================================")
-    print(f"Team 2: {total_runs} - {wicket_count}  / {ball_count//6}.{ball_count%6} target : {target}")
-    print("================================1====")
+    print(f"{team_2}: {total_runs} - {wicket_count}  / {ball_count//6}.{ball_count%6}  target : {target}")
+
+    print(f"{team_2} need {target-total_runs} from {total_balls-ball_count} balls")
+
+    # adding current run rate
+    if total_runs > 0:
+        print(f"CRR: {round(total_runs/(ball_count/6), 2)} | RRR: {round((target-total_runs)/((total_balls-ball_count)/6) ,2)}") # RRR needed to be fixed
+    # =======================
+    
+    print("====================================")
 
     
     if wrong:
@@ -109,51 +136,54 @@ while True:
     print("Choose your option (1 - 2)")
     print("1, Runs")
     print("2. Out")
-    input_choice = int(input("Choice :" ))
-    
-    if input_choice == 1:
-        print("Enter runs 0, 1, 2, 3, 4, 5, 6")
-        input_run = int(input("Run : "))
+
+    try:
+        input_choice = int(input("Choice : " ))
         
-        if input_run >= 0 and 6 >= input_run:
-            total_runs += input_run
+        if input_choice == 1:
+            print("Enter runs 0, 1, 2, 3, 4, 5, 6")
+            input_run = int(input("Run : "))
+            
+            if input_run >= 0 and 6 >= input_run:
+                total_runs += input_run
+                ball_count += 1
+            else:
+                wrong = True
+                continue
+
+            # adding extra runs. v1.1
+            try:
+                print("Any extra (y/n)")
+                check_extra = input("Enter y/n : ").lower()
+                if check_extra == 'y':
+                    input_extre = input("Enter w (wide ball) or n(no ball) : ").lower()
+                    if input_extre:
+                        total_runs += 1
+                        ball_count -= 1
+                        continue
+                
+                elif check_extra == 'n':
+                    continue
+
+                else:
+                    wrong = True
+
+            except ValueError:
+                wrong = True
+                continue
+            # =================
+                
+        elif input_choice == 2:
+            wicket_count += 1
             ball_count += 1
+            
         else:
             wrong = True
             continue
-
-        # adding extra runs. v1.1
-        try:
-            print("Any extra (y/n)")
-            check_extra = input("Enter y/n : ").lower()
-            if check_extra == 'y':
-                input_extre = input("Enter w (wide ball) or n(no ball) : ").lower()
-                if input_extre:
-                    total_runs += 1
-                    ball_count -= 1
-                    continue
-            
-            elif check_extra == 'n':
-                continue
-
-            else:
-                wrong = True
-
-        except ValueError:
-            wrong = True
-            continue
-        # =================
-            
-        
-    
-    elif input_choice == 2:
-        wicket_count += 1
-        ball_count += 1
-        
-    else:
+    except ValueError:
         wrong = True
         continue
-
+    
 
 team_2_run = total_runs
 
@@ -173,5 +203,3 @@ else:
     print("==================")
     print("Winner : Team 1")
     print("==================")
-
-
