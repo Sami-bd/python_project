@@ -77,7 +77,7 @@ while True:
             check_extra = input("Enter y/n : ").lower()
             if check_extra == 'y':
                 input_extre = input("Enter w (wide ball) or n(no ball) : ").lower()
-                if input_extre:
+                if input_extre == 'n' or input_extre == 'w': #changed 1
                     s = input_extre+str(input_run)
                     overs.pop()
                     overs.append(s)
@@ -85,14 +85,24 @@ while True:
                     total_runs += 1
                     ball_count -= 1
                     continue
+
+                else: #changed 2
+                    overs.pop()
+                    reset -= 1
+                    ball_count -= 1
+                    total_runs -= input_run
+
+                    wrong = True
+                    continue
             
             elif check_extra == 'n':
                 continue
 
             else:
-                # total_runs -= input_run
-                # overs.pop()
-                # ball_count -= 1
+                overs.pop()
+                reset -= 1
+                ball_count -= 1
+                total_runs -= input_run
                 wrong = True
 
             # except ValueError:
@@ -191,7 +201,7 @@ while True:
             check_extra = input("Enter y/n : ").lower()
             if check_extra == 'y':
                 input_extre = input("Enter w (wide ball) or n(no ball) : ").lower()
-                if input_extre:
+                if input_extre == 'n' or input_extre == 'w': #changed 1
                     s = input_extre+str(input_run)
                     overs.pop()
                     overs.append(s)
@@ -199,11 +209,26 @@ while True:
                     total_runs += 1
                     ball_count -= 1
                     continue
+                else: #changed 2
+                    overs.pop()
+                    reset -= 1
+                    ball_count -= 1
+                    total_runs -= input_run
+
+                    wrong = True
+                    continue
+
+
             
             elif check_extra == 'n':
                 continue
 
             else:
+                overs.pop()
+                reset -= 1
+                ball_count -= 1
+                total_runs -= input_run
+
                 wrong = True
 
             # except ValueError:
@@ -234,7 +259,7 @@ team_2_run = total_runs
 # Finding result of the match
 if team_2_run >= target:
     print("==================")
-    print("Winner : Team 2")
+    print(f"Winner : {team_2}")
     print("==================")
 
 elif team_2_run == team_1_run:
@@ -244,5 +269,5 @@ elif team_2_run == team_1_run:
 
 else:
     print("==================")
-    print("Winner : Team 1")
+    print(f"Winner : {team_1}")
     print("==================")
