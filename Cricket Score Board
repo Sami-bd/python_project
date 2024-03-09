@@ -5,11 +5,13 @@ ball_count = 0
 wicket_count = 0
 total_runs = 0
 wrong = False
+overs = []
+reset = 0
 
 
 # asking team name
-team_1 = input("Enter team 1 name : ")
-team_2 = input("Enter team 2 name : ")
+team_1 = input("Enter batting team name : ")
+team_2 = input("Enter balling team name : ")
 
 
 # asking wickets and overs user want to play. v1.2 
@@ -28,13 +30,22 @@ while True:
 
     if ball_count == total_balls or wicket_count == total_wickets:
         break
+    
     print("============================")
     print(f"{team_1}: {total_runs} - {wicket_count}  / {ball_count//6}.{ball_count%6}")
     
     # adding current run rate
-    if total_runs > 0:
+    if total_runs and ball_count:
         print(f"CRR: {round(total_runs/(ball_count/6), 2)}")
     # =======================
+        
+    if overs:
+        print("This over : ", end="")
+        print(" ".join(map(str, overs)))
+        if reset == 6:
+            reset = 0
+            overs = []
+
     print("============================")
 
     
@@ -52,36 +63,46 @@ while True:
             input_run = int(input("Run : "))
 
             if input_run >= 0 and 6 >= input_run:
+                overs.append(input_run)
+                reset += 1
                 total_runs += input_run
                 ball_count += 1
             else:
                 wrong = True
                 continue
 
-
             # adding extra runs. v1.1
-            try:
-                print("Any extra (y/n)")
-                check_extra = input("Enter y/n : ").lower()
-                if check_extra == 'y':
-                    input_extre = input("Enter w (wide ball) or n(no ball) : ").lower()
-                    if input_extre:
-                        total_runs += 1
-                        ball_count -= 1
-                        continue
-                
-                elif check_extra == 'n':
+            # try:
+            print("Any extra (y/n)")
+            check_extra = input("Enter y/n : ").lower()
+            if check_extra == 'y':
+                input_extre = input("Enter w (wide ball) or n(no ball) : ").lower()
+                if input_extre:
+                    s = input_extre+str(input_run)
+                    overs.pop()
+                    overs.append(s)
+                    reset -= 1
+                    total_runs += 1
+                    ball_count -= 1
                     continue
-
-                else:
-                    wrong = True
-
-            except ValueError:
-                wrong = True
+            
+            elif check_extra == 'n':
                 continue
+
+            else:
+                # total_runs -= input_run
+                # overs.pop()
+                # ball_count -= 1
+                wrong = True
+
+            # except ValueError:
+            #     wrong = True
+            #     continue
             # =================
             
         elif input_choice == 2:
+            overs.append('Wic')
+            reset += 1
             wicket_count += 1
             ball_count += 1
             
@@ -89,6 +110,9 @@ while True:
             wrong = True
             continue
     except ValueError:
+        # total_runs -= input_run
+        # overs.pop()
+        # ball_count -= 1
         wrong = True
         continue
     
@@ -106,6 +130,8 @@ target = total_runs + 1
 ball_count = 0
 wicket_count = 0
 total_runs = 0
+overs = []
+reset = 0
     
 
 
@@ -122,10 +148,16 @@ while True:
     print(f"{team_2} need {target-total_runs} from {total_balls-ball_count} balls")
 
     # adding current run rate
-    if total_runs > 0:
+    if total_runs and ball_count:
         print(f"CRR: {round(total_runs/(ball_count/6), 2)} | RRR: {round((target-total_runs)/((total_balls-ball_count)/6) ,2)}") # RRR needed to be fixed
     # =======================
-    
+        
+    if overs:
+        print("This over : ", end="")
+        print(" ".join(map(str, overs)))
+        if reset == 6:
+            reset = 0
+            overs = [] 
     print("====================================")
 
     
@@ -145,6 +177,8 @@ while True:
             input_run = int(input("Run : "))
             
             if input_run >= 0 and 6 >= input_run:
+                overs.append(input_run)
+                reset += 1
                 total_runs += input_run
                 ball_count += 1
             else:
@@ -152,28 +186,37 @@ while True:
                 continue
 
             # adding extra runs. v1.1
-            try:
-                print("Any extra (y/n)")
-                check_extra = input("Enter y/n : ").lower()
-                if check_extra == 'y':
-                    input_extre = input("Enter w (wide ball) or n(no ball) : ").lower()
-                    if input_extre:
-                        total_runs += 1
-                        ball_count -= 1
-                        continue
-                
-                elif check_extra == 'n':
+            # try:
+            print("Any extra (y/n)")
+            check_extra = input("Enter y/n : ").lower()
+            if check_extra == 'y':
+                input_extre = input("Enter w (wide ball) or n(no ball) : ").lower()
+                if input_extre:
+                    s = input_extre+str(input_run)
+                    overs.pop()
+                    overs.append(s)
+                    reset -= 1
+                    total_runs += 1
+                    ball_count -= 1
                     continue
-
-                else:
-                    wrong = True
-
-            except ValueError:
-                wrong = True
+            
+            elif check_extra == 'n':
                 continue
+
+            else:
+                wrong = True
+
+            # except ValueError:
+            #     wrong = True
+            #     continue
             # =================
+
+
+
                 
         elif input_choice == 2:
+            overs.append('Wic')
+            reset += 1
             wicket_count += 1
             ball_count += 1
             
