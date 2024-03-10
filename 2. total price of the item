@@ -1,0 +1,28 @@
+foods = []
+prices = []
+total = 0
+
+# This loop is taking food name and price
+while True:
+    food_name = input("Enter food name (q for quit): ")
+
+    if food_name == 'q':
+        break
+
+    else:
+        food_price = float(input(f"Enter price of {food_name}: "))
+        foods.append(food_name)
+        prices.append(food_price)
+
+
+print()
+print("----------------- Your Order -------------------")
+for food, price in zip(foods, prices):
+    print(food,"--------------", price)
+
+# This loop is calculating total price of the items
+for p in prices:
+    total += p
+
+print()
+print(f"Total : {total} tk")
