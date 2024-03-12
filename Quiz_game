@@ -1,0 +1,47 @@
+
+score = 0
+
+quiz = [
+    [
+        "Who won mens icc wc 2024?\na. Bangladesh\nb. Australia\nc. India\nd. England", "b"
+    ],
+    [
+        "What is the capital of bangladesh?\na. Dhaka\nb. Chottogram\nc. Kumilla\nd. Rangpur", "a"
+    ],
+    [
+        "Which programming language is commonly used for web development?\na. Python\nb. Java\nc. HTML\nd. Ruby", "c"
+    ],
+    [
+        "What is the largest mammal in the world?\na. Elephant\nb. Gorilla\nc. Giraff\nd. Blue Whale", "d"
+    ],
+    [
+        "Which famous painting is known for its enigmatic smile?\na. Starry Night\nb. The Scream\nc. Mona Lisa\nd. The Last Supper", "c"
+    ],
+    [
+        'Who is the author of the play "Romeo and Juliet"?\na. William Shakespeare\nb. Jane Austen\nc. Charles Dickens\nd. Mark Twain', "a"
+    ],
+    [
+        "In which year did the first manned moon landing take place?\na. 2000\nb. 1972\nc. 1757\nd. 1969", "d"
+    ],
+    [
+        "What is the capital city of Australia?\na. Sydney\nb. Melbourne\nc. Canberra\nd. Brisbane", "c"
+    ],
+    
+
+]
+
+
+for i in range(len(quiz)):
+    print(quiz[i][0])
+    user_ans = input("Ans : ").lower()
+
+    if user_ans == quiz[i][1]:
+        print(f"{user_ans} is Correct!")
+        score += 1
+    
+    else:
+        print(f"{user_ans} is not Correct! Correct answer {quiz[i][1]}")
+
+print("--------- Score ---------")
+print(f"You got {score} out of {len(quiz)}")
+print("-------------------------")
