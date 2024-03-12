@@ -1,0 +1,42 @@
+
+class Quiz:
+    def __init__(self, ques, ans):
+        self.ques = ques
+        self.ans = ans
+
+
+
+questions = [
+        "Who won mens icc wc 2024?\na. Bangladesh\nb. Australia\nc. India\nd. England",
+        "What is the capital of bangladesh?\na. Dhaka\nb. Chottogram\nc. Kumilla\nd. Rangpur",
+        "Which programming language is commonly used for web development?\na. Python\nb. Java\nc. HTML\nd. Ruby",
+        "What is the largest mammal in the world?\na. Elephant\nb. Gorilla\nc. Giraff\nd. Blue Whale",
+        "Which famous painting is known for its enigmatic smile?\na. Starry Night\nb. The Scream\nc. Mona Lisa\nd. The Last Supper",
+        'Who is the author of the play "Romeo and Juliet"?\na. William Shakespeare\nb. Jane Austen\nc. Charles Dickens\nd. Mark Twain',
+        "In which year did the first manned moon landing take place?\na. 2000\nb. 1972\nc. 1757\nd. 1969",
+        "What is the capital city of Australia?\na. Sydney\nb. Melbourne\nc. Canberra\nd. Brisbane"
+]
+
+questions_obj = [
+    Quiz(questions[0], 'b'),
+    Quiz(questions[1], 'a'),
+    Quiz(questions[2], 'c'),
+    Quiz(questions[3], 'd'),
+    Quiz(questions[4], 'c'),
+    Quiz(questions[5], 'a'),
+    Quiz(questions[6], 'd'),
+    Quiz(questions[7], 'c')
+]
+
+
+def run():
+    score = 0
+    for i in questions_obj:
+        print(i.ques)
+        user_input = input("Ans : ")
+        if user_input == i.ans:
+            score += 1
+
+    print(f"You got {score} out of {len(questions)}")
+
+run()
