@@ -1,0 +1,73 @@
+
+q1 = """Who won mens icc wc 2024?
+a. Bangladesh
+b. Australia
+c. India
+d. England"""
+
+
+q2 = """What is the capital of bangladesh?
+a. Dhaka
+b. Chottogram
+c. Kumilla
+d. Rangpur"""
+
+
+q3 = """Which programming language is commonly used for web development?
+a. Python
+b. Java
+c. HTML
+d. Ruby"""
+
+q4 = """What is the largest mammal in the world?
+a. Elephant
+b. Gorilla
+c. Giraff
+d. Blue Whale"""
+
+
+q5 = """Which famous painting is known for its enigmatic smile?
+a. Starry Night
+b. The Scream
+c. Mona Lisa
+d. The Last Supper"""
+
+
+q6 = """In which year did the first manned moon landing take place?
+a. 2000
+b. 1972
+c. 1757
+d. 1969"""
+
+q7 = """What is the capital city of Australia?
+a. Sydney
+b. Melbourne
+c. Canberra
+d. Brisbane"""
+
+ques_ans ={
+    q1 : 'b',
+    q2 : 'a',
+    q3 : 'c',
+    q4 : 'd',
+    q5 : 'c',
+    q6 : 'd',
+    q7 : 'c'
+}
+
+
+score = 0
+for i in ques_ans:
+    print(i)
+    user_input = input("Answer : ")
+
+    if user_input == ques_ans[i]:
+        print("Correct!")
+        score += 1
+
+    else: 
+        print("Wrong!")
+
+    
+
+print(f"You got {score} out of {len(ques_ans)}")
