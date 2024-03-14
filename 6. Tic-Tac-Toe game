@@ -1,6 +1,6 @@
 import os
 
-board_box = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+board_box = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
 
 # function to create board 
 def game_board(board_box):
@@ -12,6 +12,17 @@ def game_board(board_box):
     ---------
     {board_box[6]} | {board_box[7]} | {board_box[8]}
     """)
+
+    print(f"""
+    1 | 2 | 3
+    ---------
+    4 | 5 | 6
+    ---------
+    7 | 8 | 9
+    """)
+
+    print("Enter between 1 - 9")
+
 
 # function to check input 
 def check_input(board_box):
@@ -32,6 +43,26 @@ def check_input(board_box):
         return 'x'
     elif board_box[6] == board_box[7] == board_box[8] == 'o':
         return 'o'
+    
+    # checking first col
+    if board_box[0] == board_box[3] == board_box[6] == 'x':
+        return 'x'
+    elif board_box[0] == board_box[3] == board_box[6] == 'o':
+        return 'o'
+    
+    # checking 2nd col
+    elif board_box[1] == board_box[4] == board_box[7] == 'x':
+        return 'x'
+    elif board_box[1] == board_box[4] == board_box[7] == 'o':
+        return 'o'
+    
+    # checking 3rd col
+    elif board_box[2] == board_box[5] == board_box[8] == 'x':
+        return 'x'
+    elif board_box[2] == board_box[5] == board_box[8] == 'o':
+        return 'o'
+
+
     
     # checking diagonal 
     elif board_box[0] == board_box[4] == board_box[8] == 'x':
@@ -79,7 +110,7 @@ while True:
 
 
         game_board(board_box) # displaying board
-        user_input = int(input(f"{'Player 1' if check == 0 else 'Player 2'} :"))
+        user_input = int(input(f"{'Player 1 (x)' if check == 0 else 'Player 2 (o)'} :"))
         
         # Player input change
         if check == 0:
@@ -108,4 +139,3 @@ while True:
     
     except ValueError:
         wrong = True
-        
