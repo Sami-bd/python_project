@@ -1,0 +1,111 @@
+import os
+
+board_box = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+# function to create board 
+def game_board(board_box):
+    print("--------Tic-Tac-Toe--------")
+    print(f"""
+    {board_box[0]} | {board_box[1]} | {board_box[2]}
+    ---------
+    {board_box[3]} | {board_box[4]} | {board_box[5]}
+    ---------
+    {board_box[6]} | {board_box[7]} | {board_box[8]}
+    """)
+
+# function to check input 
+def check_input(board_box):
+    # checking first row
+    if board_box[0] == board_box[1] == board_box[2] == 'x':
+        return 'x'
+    elif board_box[0] == board_box[1] == board_box[2] == 'o':
+        return 'o'
+    
+    # checking 2nd row
+    elif board_box[3] == board_box[4] == board_box[5] == 'x':
+        return 'x'
+    elif board_box[3] == board_box[4] == board_box[5] == 'o':
+        return 'o'
+    
+    # checking 3rd row
+    elif board_box[6] == board_box[7] == board_box[8] == 'x':
+        return 'x'
+    elif board_box[6] == board_box[7] == board_box[8] == 'o':
+        return 'o'
+    
+    # checking diagonal 
+    elif board_box[0] == board_box[4] == board_box[8] == 'x':
+        return 'x'
+    elif board_box[0] == board_box[4] == board_box[8] == 'o':
+        return 'o'
+    
+    elif board_box[2] == board_box[4] == board_box[6] == 'x':
+        return 'x'
+    elif board_box[2] == board_box[4] == board_box[6] == 'o':
+        return 'o'
+
+
+
+
+check = 0 #for changing player
+wrong = False #for wrong input
+counter = 0 #count total correct input
+
+
+while True:
+    os.system("cls")
+    try:
+        # calling check_input function for the result
+        res = check_input(board_box)
+        if res == 'x':
+            print("-----------------")
+            print("Congratulations!")
+            print("Winner player 1")
+            print("-----------------")
+            break
+        elif res == 'o':
+            print("-----------------")
+            print("Congratulations!")
+            print("Winner player 2")
+            print("-----------------")
+            break
+        elif counter == 9:
+            print("-------")
+            print("Draw")
+            print("-------")
+            break
+
+
+
+
+        game_board(board_box) # displaying board
+        user_input = int(input(f"{'Player 1' if check == 0 else 'Player 2'} :"))
+        
+        # Player input change
+        if check == 0:
+            x_o = 'x'
+        else:
+            x_o = 'o'
+        
+        # Inserting player's input into array
+        if user_input >= 1 and user_input <= 9:
+            board_box[user_input-1] = x_o
+            counter += 1
+        else:
+            wrong = True
+            continue
+        
+        
+        
+
+        
+        
+        # check variable used for changing player (check = 0 is player 1) (check = 1 is player 2)
+        if check == 0:
+            check = 1
+        else:
+            check = 0
+    
+    except ValueError:
+        wrong = True
+        
