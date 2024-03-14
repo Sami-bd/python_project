@@ -13,15 +13,6 @@ def game_board(board_box):
     {board_box[6]} | {board_box[7]} | {board_box[8]}
     """)
 
-    print(f"""
-    1 | 2 | 3
-    ---------
-    4 | 5 | 6
-    ---------
-    7 | 8 | 9
-    """)
-
-    print("Enter between 1 - 9")
 
 
 # function to check input 
@@ -89,18 +80,21 @@ while True:
         # calling check_input function for the result
         res = check_input(board_box)
         if res == 'x':
+            game_board(board_box)
             print("-----------------")
             print("Congratulations!")
             print("Winner player 1")
             print("-----------------")
             break
         elif res == 'o':
+            game_board(board_box)
             print("-----------------")
             print("Congratulations!")
             print("Winner player 2")
             print("-----------------")
             break
         elif counter == 9:
+            game_board(board_box)
             print("-------")
             print("Draw")
             print("-------")
@@ -110,7 +104,16 @@ while True:
 
 
         game_board(board_box) # displaying board
-        user_input = int(input(f"{'Player 1 (x)' if check == 0 else 'Player 2 (o)'} :"))
+        print(f"""
+    1 | 2 | 3
+    ---------
+    4 | 5 | 6
+    ---------
+    7 | 8 | 9
+    """)
+
+        print("Enter between 1 - 9")
+        user_input = int(input(f"{'Player 1' if check == 0 else 'Player 2'} :"))
         
         # Player input change
         if check == 0:
