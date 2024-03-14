@@ -1,0 +1,51 @@
+import os
+import random
+
+# Variables
+game_opt = ['rock', 'paper', 'scissors']
+comp_point = 0
+human_point = 0
+draw_count = 0
+game_count = 0
+
+# Game loop
+while True:
+    user_input = input("Enter Rock, Paper, Scissors (q to quit) ").lower()
+    rand_num = random.randint(0,2)
+    comp_choice = game_opt[rand_num]
+
+    if user_input == 'q':
+        break
+    if user_input not in game_opt:
+        continue
+
+    print(f"Human : {user_input}")
+    print(f"Computer : {comp_choice}")
+    
+    # Condition chacking for winner
+    if (user_input == 'rock' and comp_choice == 'scissors') or (user_input == 'paper' and comp_choice == 'rock') or (user_input == 'scissors' and comp_choice == 'paper'):
+
+        print('Human won')
+        human_point +=1
+
+    
+    elif (user_input == 'rock' and comp_choice == 'paper') or (user_input == 'paper' and comp_choice == 'scissors') or (user_input == 'scissors' and comp_choice == 'rock'):
+
+        print('Computer won')
+        comp_point += 1
+
+    elif user_input == comp_choice:
+        print("Draw")
+        draw_count += 1
+
+    game_count += 1
+
+
+# Showing game results
+os.system("cls")
+print("--------------- Game Result ---------------")
+print(f"Total game played {game_count} times")
+print(f"Human won {human_point} points")
+print(f"Computer won {comp_point} points")
+print(f"Draw {draw_count} times")
+    
