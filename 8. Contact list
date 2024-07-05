@@ -1,0 +1,78 @@
+def choice_option():
+    print("First input".center(30, "-"))
+    print("1. Add contacts")
+    print("2. Update contacts")
+    print("3. Delete contacts")
+    print("4. Display contacts")
+    print("5. Exit")
+
+# adding new contacts
+def add(contact_list):
+    name = input("Name: ")
+    number = input("Number: ")
+    contact_list.update({name:number})
+
+# update contacts ======= Not build yet =======
+def update(contact_list):
+    # find_name = input("Search name to delete: ")
+    # if find_name in contact_list:
+        
+    #     print("Update successfull")
+
+    # else:
+    #     print("Name not found")
+    pass
+
+# delete contacts
+def delete(contact_list):
+    find_name = input("Search name to delete: ")
+    if find_name in contact_list:
+        contact_list.pop(find_name)
+        print("Delete successfull")
+
+    else:
+        print("Name not found")
+
+    
+# displaying all contact list
+def display(contact_list):
+    print("Contact list".center(30, "-"))
+    order = 1
+    if contact_list:
+        for item in contact_list:
+            print(f"{order}.{item}\n\t{contact_list[item]}")
+            order += 1
+    else:
+        print("Contact list is empty")
+    
+    
+ 
+
+# ========== Main Function =============
+def main():
+    contact_list = {}
+    # variables
+
+    while True:
+        choice_option()
+        choice = int(input("Enter 1 - 5: "))
+
+        if choice == 1:
+            add(contact_list)
+            print("Successfully added new contact")
+
+        elif choice == 2:
+            update(contact_list)
+
+        elif choice == 3:
+            delete(contact_list)
+
+        elif choice == 4:
+            display(contact_list)
+
+        elif choice == 5: 
+            break
+
+
+if __name__ == "__main__":
+    main()
