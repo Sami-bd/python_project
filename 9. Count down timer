@@ -1,0 +1,31 @@
+import time
+import os
+min = int(input("Enter minutes: "))
+sixty_sec = int(input("Enter seconds: "))
+
+# sixty_sec = 59
+
+if sixty_sec == 59:
+    min -= 1
+
+while True:
+    os.system('cls')
+    print("=========".center(20))
+    print(f'{min:02} : {sixty_sec:02}'.center(20))
+    print("=========".center(20))
+
+
+    sixty_sec -= 1
+
+    if min == 0 and sixty_sec == -1:
+        break
+
+    if sixty_sec == -1:
+        sixty_sec = 59
+        min -= 1
+
+    time.sleep(1)
+    
+
+
+print('times up......')
