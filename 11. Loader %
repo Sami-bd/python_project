@@ -1,0 +1,23 @@
+import time
+import random
+import os
+
+percent = 1
+loader = '.'
+
+while percent <= 100:
+    os.system('cls')
+    print(f'{percent}%')
+    print(loader * (percent//2))
+
+    percent = percent + random.randint(1, 8)
+
+    if percent > 100:
+        os.system('cls')
+        print(f'100%')
+        print(loader * 50)
+
+    time.sleep(1)
+
+
+print('Loading complete...')
